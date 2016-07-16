@@ -9,13 +9,14 @@ return $val;
 	} else {
 		$url = "http://roll.sohu.com/index_"._get('p').".shtml";
 	}
-	if( _get('c') == "" ){
+	if( _get('m') == "" ){
 		$url = "http://roll.sohu.com/";
 	} else {
-		$url = "http://roll.sohu.com/"._get('c')."/";
+		$url = "http://roll.sohu.com/"._get('m')."_bak/";
 	}
 	//echo $url;
 	//die();
+	
 	function curl_get_contents($url)   
 {   define("_USERAGENT_","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36");
     $ch = curl_init();   
@@ -32,6 +33,8 @@ return $val;
 }  
 	$html =  curl_get_contents($url);
 	$html = iconv( "gb2312" , "utf-8//IGNORE" , $html );
+	
+	
 
 	preg_match_all( '/\_(.*?)\.shtml\'>上一页/' , $html , $str );
 
@@ -80,82 +83,35 @@ return $val;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="<?php echo $web_key; ?>" />
 <meta name="description" content="<?php echo $web_des; ?>" />
-<title><?php echo $web_name; ?></title>
-<style>
-.body{
-	width:960px;
-	height:auto;
-	margin:0px auto;
-}
-.block{
-	width:960px;
-	height:auto;
-	margin:0px auto;
-	border-top:#000000 5px solid;
-	border-bottom:#000000 5px solid;
-}
-.block_con{
-	width:960px;
-	height:auto;
-	margin:0px;
-}
-.title{
-	width:940px;
-	height:30px;
-	margin-left:20px;
-	line-height:30px;
-	border-bottom:#333333 1px solid;
-}
-.title a{
-	font-family:Microsoft YaHei ! important;
-	font-size:18px;
-	color:#339900;
-	text-decoration:none;
-}
-.con{
-	width:960px;
-	height:auto;
-	margin:0px;
-	margin-top:2px;
-	font-family:Microsoft YaHei ! important;
-	font-size:18px;
-	line-height:30px;
-	text-indent:36px;
-}
-.time{
-	width:960px;
-	height:20px;
-	font-family:Microsoft YaHei ! important;
-	font-size:12px;
-	line-height:20px;
-	text-align:right;
-}
-.page{
-	width:960px;
-	height:auto;
-	margin:10px auto;
-}
-.page a{
-	color:#FFFFFF;
-	text-decoration:none;
-	font-family:Microsoft YaHei ! important;
-	line-height:40px;
-	padding:13px 15px;
-	background-color:#000000;
-}
-.page a:hover{
-	background-color:#339900;
-	color:#FFFFFF;
-}
-.about{
-	text-align:center;
-	font-size:16px;
-	font-family:Microsoft YaHei ! important;
-	line-height:20px;
-}
-</style>
+<title>最新新闻-新闻头条-<?php echo $web_name; ?></title>
+<link rel="stylesheet" type="text/css" href="css.css">
 </head>
 <body>
+<div class="nav">
+<ul>
+<li><a href="/"><strong>首页</strong></a></li>
+<li><a href="?m=yule">娱乐</a></li>
+<li><a href="?m=it">IT数码</a></li>
+<li><a href="?m=auto">汽车</a></li>
+<li><a href="?m=sports">体育</a></li>
+<li><a href="?m=focus">房产</a></li>
+<li><a href="?m=women">女性</a></li>
+<li><a href="?m=fashion">时尚</a></li>
+<li><a href="?m=health">健康</a></li>
+<li><a href="?m=cul">文化</a></li>
+<li><a href="?m=learning">教育</a></li>
+<li><a href="?m=money">财经</a></li>
+<li><a href="?m=stock">证券</a></li>
+<li><a href="?m=games">游戏</a></li>
+<li><a href="?m=media">媒体</a></li>
+<li><a href="?m=city">城市</a></li>
+<li><a href="?m=luxury">奢侈品</a></li>
+<li><a href="?m=star">评论</a></li>
+<li><a href="?m=travel">旅游</a></li>
+<li><a href="?m=pic">大视野</a></li>
+<li><a href="?m=subject">专题</a></li>
+</ul>
+</div>
 <div class="block">
 <ul>
 <?php
@@ -167,10 +123,12 @@ for( $i = 0 ; $i <= count($str100[1])-1 ; $i++ ){
 	<li>
 	<?php 
 
-    $li=str_replace("[<a href=\"http://roll.sohu.com/", "[<a href=\"?c=", $str100[1][$i]);
+    $li=str_replace("[<a href=\"http://roll.sohu.com/", "[<a href=\"?m=", $str100[1][$i]);
 	$li=str_replace("/\"", "\"", $li);
 	$li=str_replace("http://", "read.php?t=", $li);
 	$li=str_replace(".sohu.com", "", $li);
+	$li=str_replace("[", "", $li);
+	$li=str_replace("]", "", $li);
 	echo $li;
 	?>
 	</li>

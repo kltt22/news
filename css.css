@@ -1,0 +1,167 @@
+body,div,dl,dt,dd,ul,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,blockquote p {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 14px;
+	font-family: 'Microsoft Yahei','Helvetica Neue','Luxi Sans','DejaVu Sans',Tahoma,'Hiragino Sans GB',STHeiti;
+	color: #333;
+	width: 960px;
+	margin: 0 auto;
+	line-height: 200%;
+}
+
+a {
+	color: #37a;
+	text-decoration: none;
+}
+
+.bd {
+	width: 960px;
+	margin: 0 auto;
+	height: auto;
+}
+
+ul li {
+	list-style: none;
+}
+
+.nav {
+	background-color: #f0f3f5;
+	height: 40px;
+	margin: 0;
+	clear: both;
+	display: block;
+	border-bottom: 1px solid #e5ebe4;
+	margin-bottom: 10px;
+}
+
+.na ul {
+	height: 40px;
+	margin: 5px 0px;
+	clear: both;
+	display: block;
+	padding-right: 10px;
+}
+
+.nav ul li {
+	float: left;
+	margin: 0px 7.5px;
+	line-height: 40px;
+}
+
+.nr {
+	margin-top: 10px;
+	height: auto;
+}
+
+.block {
+	width: 900px;
+	margin-right: 15px;
+	}
+
+.you {
+	width: 300px;
+	float: right;
+	padding-left: 15px;
+	border-left: 1px solid #eaeaea;
+}
+.conpage{
+	width:645px;
+	  margin-right: 15px;
+     float: left;
+     border-right: 1px solid #eaeaea;
+}
+.title{
+	margin-right:15px; 
+}
+.title h1 {
+	font-size: 18px;
+	color: #111;
+	margin: 0 0 8px 0;
+	line-height: 150%;
+	padding: 10px 0px;
+	border-bottom: 1px solid #eaeaea;
+}
+.title span {
+  font-size: 12px;
+  margin-right: 10px;
+  color: #999;
+}
+.con {padding-right: 15px;
+
+}
+h3 {
+	font-size: 18px;
+	color: #111;
+	margin: 0 0 12px 0;
+	line-height: 150%;
+	padding: 10px 0px 5px 0px;
+	border-bottom: 1px solid #eaeaea;
+	font-weight: normal;
+}
+
+.block ul li {
+	margin-bottom: 5px;
+}
+
+.block ul li em {
+	font-style: normal;
+	margin-right: 12px;
+	background-color: #268dcd;
+	color: #fff;
+	border-radius: 2px;
+	padding: 1px 10px;
+	text-align: center;
+	line-height: 24px;
+}
+
+.block ul li em a {
+	color: #fff;
+}
+
+.block ul li span {
+	margin-left: 12px;
+	color: #999;
+	font-size: 12px;
+}
+
+.foot {
+	border-top: 1px solid #eaeaea;
+	margin: 10px 0px 20px 0px;
+	padding: 10px 0px;
+	text-align: center;
+}
+
+.con .text {
+	line-height: 24px;
+}
+
+.title {
+	margin-bottom: 10px;
+}
+.xgnews{
+	width: 630px;
+}
+.xgnews span {
+	float: right;
+	font-size: 12px;
+	color: #999;
+}
+
+
+
+.pages {
+	text-align: center;
+}
+
+.pages a {
+	margin-right: 15px;
+}
+hr{
+	clear: both;
+}
+.about{
+
+}

@@ -1,8 +1,8 @@
 ﻿<?php
-	$web_name = "80xiazai";
-	$web_key = "80xiazai,80xiazai.com,80资源网,80网";
-	$web_des = "80xiazai";
+	$web_name = "溯源新闻网";
+	$web_key = "最新滚动新闻";
+	$web_des = "溯源新闻网提供最新滚动新闻和最新头条新闻";
 	$tongji = "";
-	$about = "80xiazai";
+	$about = "声明：本网部分信息转载于其他网站，如稿件涉及版权等问题，请联系我们！";
 
 ?>
