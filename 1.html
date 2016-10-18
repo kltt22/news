@@ -1,0 +1,1425 @@
+
+
+<!DOCTYPE html>
+<html>
+<head id="Head1"><title>
+	学时学习模式
+</title><meta content="text/html; charset=utf-8" http-equiv="Content-Type" /><link href="css/main.css" rel="stylesheet" type="text/css" /><link href="css/wdc_tool.css" rel="stylesheet" type="text/css" /><link type="text/css" rel="stylesheet" href="/CSS/jquery-ui-1.10.2.custom.css" />
+
+    <script type="text/jscript" language="javascript" src="/Scripts/jquery.js" ></script>
+    <script type="text/jscript" language="javascript" src="/Scripts/jquery-ui-1.10.2.custom.min.js"></script>
+	<script type="text/jscript" language="javascript" src="/Scripts/wdc_api.js"></script>
+	
+
+	<script type="text/javascript" src="/ckplayer6.5/offlights.js"></script>
+	<script type="text/javascript" src="/ckplayer6.5/ckplayer.js"></script>
+
+    <script type="text/javascript" src="/Scripts/iealert.js" ></script>
+
+    
+
+    <script src="js/jquery.raty.js" type="text/javascript"></script>
+
+    <style type="text/css">
+    *{margin:0;padding:0;list-style-type:none;}
+    a,img{border:0;display:inlin-block}
+    .button a{ text-decoration:none; color:#45c2f7; font-weight:bold}
+    .button_2 a{text-decoration:none; color:#45c2f7;font-weight:bold}
+    p{margin:20px 0 10px 0;}
+    input{ margin:0; padding:0}
+    .pingfen_right textarea{ border:#CCC solid 1px; width:282px; height:100px; overflow:auto;margin-left:10px}
+    .spinnerExample {margin:10px 0;}
+    .xingxing{float:left;margin-left:10px; width:180px}
+    #questionPanel{width:271px; margin-left:5px; border-top:#0075aa solid 1px; overflow:hidden;margin-top:30px}
+    .listfirst{margin-top:10px; width:271px; overflow:hidden; margin-left:5px;}
+    .list{margin-bottom:15px;}
+    .listfirst_left{float:left;font-size:12px; color:#0075aa; width:50px; }
+    .listfirst_right{float:left;font-size:12px; color:#0075aa; width:215px;overflow:hidden;  text-overflow: ellipsis;display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;}
+    .listfirst_dy{ float:left;font-size:12px; color:#0075aa; width:50px; text-indent:1.8em}
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+
+
+            $("#jisuanqion").click(
+				function (e) {
+				    toggleobj('hehejisuanqi');
+				}
+			);
+            $("#hehejisuanqi .off").click(
+				function (e) {
+				    toggleobj('hehejisuanqi');
+				}
+			);
+
+            function slideshowbox(boxid) {
+                $("#container").animate({
+                    width: '+=285px'
+                });
+                $("#" + boxid).animate({
+                    width: '+=285px'
+                });
+                $("#" + boxid).css("border", "#97E0EF solid 1px");
+                $("#" + boxid).css("border-right", "none");
+            }
+            function slidehidebox() {
+                $("#container").animate({
+                    width: '-=285px'
+                });
+                $(".ext-7").animate({
+                    width: '-=285px'
+                });
+                $(".ext-7").css("border", "none");
+            }
+            function showbox(boxid) {
+                $("#container").animate({
+                    width: '+=285px'
+                }, 0);
+                $("#" + boxid).animate({
+                    width: '+=285px'
+                }, 0);
+                $("#" + boxid).css("border", "#97E0EF solid 1px");
+                $("#" + boxid).css("border-right", "none");
+            }
+            function hidebox() {
+                $("#container").animate({
+                    width: '-=285px'
+                }, 0);
+                $(".ext-7").animate({
+                    width: '-=285px'
+                }, 0);
+                $(".ext-7").css("border", "none");
+            }
+
+            $(".ext-8-btn").click(
+				function (e) {
+				    $(this).find(".ext-8-bg").toggle();
+				    var curstaus = $(this).find(".ext-8-bg").is(":visible");
+				    var shownum = $(".ext-8-btn .ext-8-bg:visible").size();
+				    if (curstaus) shownum = shownum - 1;
+				    if (shownum > 0) {
+				        $(".ext-8-btn .ext-8-bg:visible").hide();
+				        hidebox();
+				    }
+
+				    if (!curstaus) {
+				        $(this).find(".ext-8-bg").hide();
+				        if (shownum > 0) hidebox();
+				        else slidehidebox();
+				    }
+				    else {
+				        $(this).find(".ext-8-bg").show();
+				        var index = $(this).index(".ext-8-btn") + 1;
+				        if (shownum > 0) showbox("box" + index);
+				        else slideshowbox("box" + index);
+				    }
+				}
+			);
+
+            $(".ext-7-box-closebtn").click(
+				function (e) {
+				    var shownum = $(".ext-8-btn .ext-8-bg:visible").size();
+				    if (shownum > 0) {
+				        $(".ext-8-btn .ext-8-bg:visible").hide();
+				        slidehidebox();
+				    }
+				}
+			);
+
+            $(".ext-16-close-btn").click(
+				function (e) {
+				    $(this).parent().slideUp(100);
+				}
+			);
+
+            $(".ext-16-save-btn").click(
+				function (e) {
+				    var txt = $(this).siblings(".ext-16-input").eq(0).val();
+				    $(this).siblings(".ext-16-txt").eq(0).text(txt).show();
+				    $(this).siblings(".ext-16-input").eq(0).hide();
+				    $(this).hide();
+				    $(this).siblings(".ext-16-edit-btn").eq(0).show();
+				}
+			);
+
+            $(".ext-16-edit-btn").click(
+				function (e) {
+				    var txt = $(this).siblings(".ext-16-txt").eq(0).text();
+				    $(this).siblings(".ext-16-input").eq(0).val(txt);
+				    $(this).siblings(".ext-16-txt").eq(0).hide();
+				    $(this).siblings(".ext-16-input").eq(0).show();
+				    $(this).hide();
+				    $(this).siblings(".ext-16-save-btn").eq(0).show();
+				}
+			);
+
+            $("#new-btn").click(
+				function (e) {
+				    var colors = new Array();
+				    //colors[0]="#F34C3E";
+				    //colors[1]="#4AC7F1";
+				    //colors[2]="#DDE241";
+				    //colors[3]="#FCAF43";
+				    //colors[4]="#FCEAA8";
+				    colors[0] = "#FCEAA8";
+				    colors[1] = "#FCEAA8";
+				    colors[2] = "#FCEAA8";
+				    colors[3] = "#FCEAA8";
+				    colors[4] = "#FCEAA8";
+				    //$("#new-btn").after($(".clonee").eq(0).clone(true).removeClass("clonee").css("background", colors[random(0, 5)]).slideDown(50));
+				    $("#new-btn").after($(".clonee").eq(0).clone(true).removeClass("clonee").css("background", colors[4]).slideDown(50));
+				}
+			);
+
+            $('#kcml').trigger('click');
+
+
+        });
+	</script> 
+	<script language="javascript" type="text/javascript">
+        var curTime =0;
+        var lastTime=0;
+	    var courseXF = 1.6;
+	    var djstimer = null;  //声明一个弹题倒计时时间变量
+	    var jtime =960000;  //弹题时间间隔
+	    var jtime_jn = 240000;  //计时时间间隔
+		//var jtime = 40000;  //弹题时间间隔
+		//var jtime_jn = 10000;  //计时时间间隔
+	    var djsjtime = 1000;
+	    var djssytime = jtime;  //倒计时时间变量
+	    var djssytime_jn = jtime_jn;  //计时倒计时时间变量
+
+	    var userid = "105905";
+	    var nodeid = "1125";
+	    var annual = "2016";
+		//var userid = "2073";
+	    //var nodeid = "872";
+	    //var annual = "2013";
+
+	    var myurlhost = "http://edu.chinarx.com.cn/";
+        //var myurlhost = "http://localhost:12725/";
+        //var myurlhost = "http://localhost:5133/";
+	    var ajax_url_i = myurlhost + "user/edu/newplayer/getinfo.aspx?iids=get&userid=" + userid + "&nodeid=" + nodeid + "&annual=" + annual;
+	    var ajax_url_s = myurlhost + "user/edu/newplayer/getinfo.aspx?sids=get&userid=" + userid + "&nodeid=" + nodeid + "&annual=" + annual;
+
+	    var TIIDs = new Array();
+	    var tsd = new Array();
+	    var tsdtxt = new Array();
+	    var itemIDs = getItemIDs(ajax_url_i);
+	    var stuIIDs = getStuItemIDs(ajax_url_s);
+	    updateTsd(itemIDs, stuIIDs, tsd, tsdtxt, TIIDs);
+		
+       function showdianhua(mykechengid, myuserid) {
+            if (null == mykechengid || -1 == mykechengid || null == myuserid || -1 == myuserid) return;
+            kechengid = mykechengid;
+            userid = myuserid;
+            $("#dianhuadlg").dialog(
+                {
+                    resizable: false,
+                    width: 400,
+                    modal: true,
+                    title: "",
+                    dialogClass: "dlgclass1"
+                }
+            );
+            $(".dlgclass1 .ui-dialog-titlebar").remove();
+        }
+
+        function closedlg(did) {
+            $("#" + did).dialog("close");
+        }
+
+        function saveData() {
+	            var content = $("#content").val();
+	            var cID = $("#cID").val();
+	            var uName = $("#username").val();
+	            var cs = $("#cs").val();
+	            var ts = $("#ts").val();
+                if(content==""){
+                    alert("请输入评价内容。");
+                    return;
+                }
+                if(cs==0){
+                    alert("请对课程进行打分。");
+                    return;
+                }
+                if(ts==0){
+                    alert("请对教师进行打分。");
+                    return;
+                }
+	            var msg = $.ajax({ url: "/Inter/savePJ.ashx?content=" + content + "&contentScore=" + cs + "&teacherScore=" + ts + "&cID=" + cID + "&uName=" + uName, async: false });
+	            closedlg('dianhuadlg');
+                alert("感谢您的评价！");
+	        }
+
+        function isPingJia(c,u){
+            
+            var msg = $.ajax({ url: "/Inter/isPJ.ashx?cID=" + c + "&uName=" + u, async: false });
+            if(msg.responseText=="isExist"){
+                alert('您已为该课程打过分，无需重复打分。');
+            }else{
+            showdianhua(1,1);
+            }
+        }
+
+        function saveQuestion(){
+            var question=$("#question").val();
+            var uName = $("#username").val();
+            var cID = $("#cID").val();
+            if(question==""){
+                alert("请填写问题后提交。");
+            }else{
+                getQuestionList(question,uName,cID);
+            }
+        }
+
+        function getQuestionList(question,uName,cID){
+                var questionsJson = $.ajax({ url: "/Inter/saveQuestion.ashx?question=" + question + "&uName=" + uName+ "&cID=" + cID, async: false }); 
+                var questionsHtml="";
+                if(questionsJson!=null&&questionsJson.responseText!=""){
+                    var questions = eval('(' + questionsJson.responseText + ')');
+                    for (var i = 0; i <questions.length;i++) {
+                        questionsHtml+='<div class="list"><div  class="listfirst"><div class="listfirst_left">'+(i+1)+'.问：</div><div class="listfirst_right">'+questions[i].question+'</div></div><div  class="listfirst" ><div class="listfirst_dy" >答：</div><div class="listfirst_right" >'+questions[i].answer+'</div></div></div>';
+                    }
+                }
+                else{
+                     questionsHtml="暂无问答";
+                }
+                $("#questionPanel").html(questionsHtml);
+        }
+	    function updateItem() {
+	        var currenttime = CKobject.getObjectById('ckplayer_a1').getStatus()['time'];
+	        //var iinnddeexx=(Math.round(currenttime/(jtime/1000))>=1)?Math.round(currenttime/(jtime/1000))-1:0;
+	        var iinnddeexx = Math.round(currenttime / (jtime / 1000)) - 1;
+	        var isshow = false;
+	        if (TIIDs[iinnddeexx] == 1) {
+	            CKobject.getObjectById('ckplayer_a1').videoPause(); //继续播放
+	            alert("问题已正确回答。");
+	            CKobject.getObjectById('ckplayer_a1').videoPlay(); //继续播放
+	            isshow = false;
+	        }
+	        else if (TIIDs[iinnddeexx] == 2) {
+	            var ritemMsg = $.ajax({ url: myurlhost + "user/edu/newplayer/getitem.aspx?itemid=" + itemIDs[iinnddeexx], async: false });
+				ritemMsg.responseText=ritemMsg.responseText.replace(/\r\n/ig,"");
+				ritemMsg.responseText=ritemMsg.responseText.replace(/\n/ig,"");
+	            var ritemMsgJson = eval("(0," + ritemMsg.responseText + ")");
+				
+	            if (ritemMsgJson['tfid'] && ritemMsgJson['hdItemMsg']) {
+	                isshow = true;
+
+	                var pmsg = '<input type="hidden" name="TFID" id="TFID" value="' + ritemMsgJson['tfid'] + '">';
+	                pmsg += '<span id="lbQuestion" style="font-size:12pt;">';
+	                pmsg += '<br>' + ritemMsgJson['lbQuestion'] + '<br><br>';
+	                pmsg += '</span>';
+	                pmsg += '<input type="hidden" name="hdAnswer" id="hdAnswer" value="' + ritemMsgJson['hdAnswer'] + '">';
+	                pmsg += '<input type="hidden" name="hdItemID" id="hdItemID" value="' + ritemMsgJson['hdItemID'] + '">';
+	                pmsg += '<input type="hidden" name="hdItemType" id="hdItemType" value="' + ritemMsgJson['hdItemType'] + '">';
+	                pmsg += '<table id="Item' + ritemMsgJson['hdItemID'] + '" border="0" style="font-size:12pt;">';
+	                pmsg += '<tbody>';
+	                switch (ritemMsgJson['hdItemType']) {
+	                    case '1':
+	                        {
+	                            var strs = new Array(); //定义一数组 
+								var strs_old = ritemMsgJson['hdItemMsg'];
+								strs_old = strs_old.substring(0,strs_old.length-1);
+								strs_old=strs_old.replace(",","|");
+								strs=strs_old.split("|"); //字符分割 
+	                            pmsg += '<tr>';
+	                            pmsg += '<td><input type="radio" value="A" name="Item' + ritemMsgJson['hdItemID'] + '_msg"><label>' + strs[0] + '</label></td>';
+	                            pmsg += '</tr>'; //radio  checkbox
+	                            pmsg += '<tr>';
+	                            pmsg += '<td><input type="radio" value="B" name="Item' + ritemMsgJson['hdItemID'] + '_msg"><label>' + strs[1] + '</label></td>';
+	                            pmsg += '</tr>'; //radio  checkbox
+	                            pmsg += '<tr>';
+	                            pmsg += '<td><input type="radio" value="C" name="Item' + ritemMsgJson['hdItemID'] + '_msg"><label>' + strs[2] + '</label></td>';
+	                            pmsg += '</tr>'; //radio  checkbox
+	                            pmsg += '<tr>';
+	                            pmsg += '<td><input type="radio" value="D" name="Item' + ritemMsgJson['hdItemID'] + '_msg"><label>' + strs[3] + '</label></td>';
+	                            pmsg += '</tr>'; //radio  checkbox
+	                        }
+	                        break;
+	                    case '2':
+								{
+									var strs= new Array(); //定义一数组 
+									var strs_old = ritemMsgJson['hdItemMsg'];
+									strs_old = strs_old.substring(0,strs_old.length-1);
+									strs_old=strs_old.replace(",","|");
+									strs=strs_old.split("|"); //字符分割 
+									for (wi=0;wi<strs.length ;wi++ ) 
+									{ 
+										pmsg+='<tr>';
+											pmsg+='<td><input type="checkbox" name="Item'+ritemMsgJson['hdItemID']+'_msg"><label>'+strs[wi]+'</label></td>';
+										pmsg+='</tr>';//radio  checkbox
+									}
+								}
+								break;
+	                    case '3':
+	                        {
+	                            pmsg += '<tr>';
+	                            pmsg += '<td><input type="radio" value="Y" name="Item' + ritemMsgJson['hdItemID'] + '_msg"><label>正确</label></td>';
+	                            pmsg += '<td><input type="radio" value="N" name="Item' + ritemMsgJson['hdItemID'] + '_msg"><label>错误</label></td>';
+	                            pmsg += '</tr>'; //radio  checkbox
+	                        }
+	                        break;
+	                    default: break;
+	                }
+	                pmsg += '</tbody>';
+	                pmsg += '</table>';
+
+	                $("#PanelContent").html("");
+	                $("#PanelContent").html(pmsg);
+	            }
+	            else {
+	                CKobject.getObjectById('ckplayer_a1').videoPause(); //继续播放
+	                alert("获取问题失败，请联系客服人员。");
+	                CKobject.getObjectById('ckplayer_a1').videoPlay(); //继续播放
+	                isshow = false;
+	            }
+
+	        }
+	        return isshow;
+	    }
+
+	    function getItemIDs(ajax_url_i) {
+	        var itemIDs = new Array();
+	        var riids = $.ajax({ url: ajax_url_i, async: false });
+	        if (riids.responseText) {
+	            var riidsJson = eval("(0," + riids.responseText + ")");
+	            for (var p in riidsJson) {//遍历json对象的每个key/value对,p为key 
+	                itemIDs.push(riidsJson[p]);
+	            }
+	        }
+	        return itemIDs;
+	    }
+
+	    function getStuItemIDs(ajax_url_s) {
+	        var stuIIDs = new Array();
+	        var rsids = $.ajax({ url: ajax_url_s, async: false });
+	        if (rsids.responseText) {
+	            var rsidsJson = eval("(0," + rsids.responseText + ")");
+	            for (var p in rsidsJson) {//遍历json对象的每个key/value对,p为key 
+	                stuIIDs.push(rsidsJson[p]);
+	            }
+	        }
+	        return stuIIDs;
+	    }
+
+	    function updateTsd(itemIDs, stuIIDs, tsd, tsdtxt, TIIDs) {
+	        for (var i = 0; i < itemIDs.length; i++) {
+	            var iii = i + 1;
+	            var ishave = checkItemID(itemIDs[i], stuIIDs);
+	            if (ishave) {
+	                tsd.push(parseInt(iii * (jtime / 1000)) + 0);
+	                tsdtxt.push('第' + iii + '道问题(已回答)');
+	                TIIDs.push(1); //1代表题已经回答过
+	            }
+	            else {
+	                tsd.push(parseInt(iii * (jtime / 1000)) + 0);
+	                tsdtxt.push("第" + iii + "道问题");
+	                TIIDs.push(2); //2代表题已经未回答过
+	            }
+
+	        }
+	    }
+
+	    function checkItemID(IIDD, stuIIDs) {
+	        var ishave = false;
+	        for (var j = 0; j < stuIIDs.length; j++) {
+	            if (IIDD == stuIIDs[j]) {
+	                ishave = true;
+	            }
+	        }
+	        return ishave;
+	    }
+
+	    function startDJSTimer() {
+	        if (djstimer) window.clearInterval(djstimer); //关闭定时器timer
+	        djstimer = setInterval(DJS, djsjtime);
+	    }
+	    function stopDJSTimer() {
+	        window.clearInterval(djstimer); //关闭定时器timer
+	    }
+	    function DJS() {
+		    
+			if (djssytime_jn <= 0) {
+                if(curTime>lastTime){
+	            addtime_jn();
+                }
+	            djssytime_jn = jtime_jn;
+	        }
+	        djssytime_jn -= 1000;
+			
+	        $("#DJS").html("&nbsp;【" + parseInt(djssytime / 1000) + "秒后弹出问题】");
+	        if (djssytime <= 0) {
+	            showinfo();
+	            djssytime = jtime;
+	        }
+	        djssytime -= 1000;
+	    }
+
+	    window.onload = function () {
+
+			getljxs();
+            getQuestionList('','370882198709195529','');
+	    }
+		
+
+		function getljxs()
+		{
+			var getTimestamp=new Date().getTime();
+			var htmlobj = $.ajax({ url: myurlhost+"user/edu/transplayer/savehandler.ashx?annual="+annual+"&userid="+userid+"&timestamp="+getTimestamp+"&nodeid="+nodeid ,async: false });
+//            console.log(htmlobj);
+//			var rMsg=htmlobj.responseText;
+//            var xs = parseFloat(rMsg.split('-')[0]);
+//            var st =rMsg.split("-")[1];
+
+            var xs=parseFloat(htmlobj.responseText);
+			if(xs>=24.0)
+			{
+				$("#LJXS").html('【累计学时:'+xs+'&nbsp;<a href="/user/edu/Confirm.aspx" target="_blank">去考试</a>】');
+			}
+			else
+			{
+				$("#LJXS").html('【累计学时:'+xs+'】');
+			}
+//            if(st>0){
+//                lastTime=st;
+//                 $('#nowTime').html('上次听到：'+MillisecondToDate(st)+',已听过部分不重复计分。');
+
+//                if(window.confirm('已听过部分不重复计分，请从上次听课处继续学习。')){
+//                     curTime=st;
+//                     return true;
+//                  }else{
+//                     curTime=0;
+//                     return false;
+//                 }
+//               
+//            }
+		}
+		
+		function addtime_jn() {
+			var getTimestamp=new Date().getTime();
+			//var htmlobj = $.ajax({ url: myurlhost+"PlusTime.aspx?userid="+userid+"&nodeid="+nodeid+"&annual="+annual+"&timestamp="+getTimestamp+"&studyTime="+curTime, async: false });
+			
+            var htmlobj = $.ajax({ url: myurlhost+"PlusTime.aspx?userid="+userid+"&nodeid="+nodeid+"&annual="+annual+"&timestamp="+getTimestamp, async: false });
+            var xs=parseFloat(htmlobj.responseText);
+			if(xs>=24.0)
+			{
+				$("#LJXS").html('【累计学时:'+htmlobj.responseText+'&nbsp;<a href="/user/edu/Confirm.aspx" target="_blank">去考试</a>】');
+			}
+			else
+			{
+				$("#LJXS").html('【累计学时:'+htmlobj.responseText+'】');
+			}
+		}
+
+	    function showinfo() {
+	        var mytf = updateItem();
+	        if (mytf) {
+	            var tf = $("#TFID").val();
+	            if (tf == "true") {
+	                $("#dialog-message").dialog({
+	                    title: "随堂问题：",
+	                    modal: true,
+	                    width: 600,
+	                    buttons: {
+	                        "回答问题": function () {
+	                            if (document.getElementById("hdItemID") != null) {
+	                                var itemid = $("#hdItemID").val();
+	                                var itemidstr = "Item" + $("#hdItemID").val();
+	                                var itemtype = $("#hdItemType").val();
+	                                var itemanswer = $("#hdAnswer").val();
+
+	                                var vrnum = $("#" + itemidstr).find("input").size();
+	                                var value = ''; //学员答案
+	                                if ((itemtype == 1) || (itemtype == 3))//单选和判断
+	                                {
+	                                    for (var i = 0; i < vrnum; i++) {
+	                                        if ($("#" + itemidstr).find("input").eq(i).is(':checked')) {
+	                                            var text = $("#" + itemidstr).find("td").eq(i).text();
+	                                            value = $("#" + itemidstr).find("input").eq(i).val();
+	                                        }
+	                                    }
+	                                } else if (itemtype == 2) {
+
+	                                    for (var i = 0; i < vrnum; i++) {
+	                                        if ($("#" + itemidstr).find("input").eq(i).is(':checked')) {
+	                                            var text = $("#" + itemidstr).find("td").eq(i).text();
+	                                            if (text.indexOf("A") == 0) value += "A;";
+	                                            if (text.indexOf("B") == 0) value += "B;";
+	                                            if (text.indexOf("C") == 0) value += "C;";
+	                                            if (text.indexOf("D") == 0) value += "D;";
+	                                            if (text.indexOf("E") == 0) value += "E;";
+	                                        }
+	                                    }
+	                                }
+
+	                                //--判读回答是否正确--
+	                                if (value == itemanswer) {
+	                                    var htmlobj = $.ajax({ url: myurlhost + "user/edu/transplayer/savehandler.ashx?annual=" + annual + "&itemid=" + itemid + "&userid=" + userid + "&nodeid=" + nodeid, async: false });
+	                                   // $("#SaveDiv").html(htmlobj.responseText);
+	                                    itemIDs = getItemIDs(ajax_url_i);
+	                                    stuIIDs = getStuItemIDs(ajax_url_s);
+	                                    updateTsd(itemIDs, stuIIDs, tsd, tsdtxt, TIIDs);
+	                                    CKobject.getObjectById('ckplayer_a1').promptUnload(); //卸载掉目前的
+	                                    CKobject.getObjectById('ckplayer_a1').changeFlashvars('{k->' + tsd.join("|") + '}{n->' + tsdtxt.join("|") + '}');
+	                                    CKobject.getObjectById('ckplayer_a1').promptLoad(); //重新加载
+
+	                                    alert("回答正确！");
+	                                }
+	                                else {
+	                                    var htmlobj = $.ajax({ url: myurlhost + "user/edu/transplayer/savehandler.ashx?annual=" + annual + "&itemid=" + itemid + "&userid=" + userid + "&nodeid=" + nodeid, async: false });
+	                                   // $("#SaveDiv").html(htmlobj.responseText);
+	                                    alert("回答错误，该题的正确答案为：" + itemanswer);
+	                                }
+	                            }
+	                        },
+	                        "继续听课": function () {
+	                            CKobject.getObjectById('ckplayer_a1').videoPlay(); //继续播放
+	                            $(this).dialog("destroy"); // 关闭时销毁
+	                        }
+	                    },
+	                    open: function (event, ui) {
+	                        CKobject.getObjectById('ckplayer_a1').videoPause(); //暂停视频播放
+	                        $(".ui-dialog-titlebar-close", $(this).parent()).hide(); //打开时隐藏关闭按钮
+	                        $("#SaveDiv").html("");
+	                    },
+	                    close: function () {
+	                        CKobject.getObjectById('ckplayer_a1').videoPlay(); //继续播放
+	                        $(this).dialog("destroy"); // 关闭时销毁
+	                    }
+	                });
+	            }
+	        }
+	    }
+	
+	
+		function showphoto1() {
+	            $("#dialog-message-photo").dialog({
+	                title: "摄像头",
+	                modal: false,
+	                width: 275,
+					position: [0, 430],
+	                //buttons: {
+	                    //"关闭": function () {
+	                        //$(this).dialog("destroy"); // 关闭时销毁
+	                    //}
+	                //},
+	                open: function (event, ui) {
+	                    
+	                },
+	                close: function () {
+	                    $(this).dialog("destroy"); // 关闭时销毁
+	                }
+	            });
+	    }
+	</script>
+
+	<script language="javascript" type="text/javascript">
+	    //function creat() {
+	    //window.showModelessDialog("/savephoto/PhotoOnline.html", "", //"dialogWidth:250px;dialogHeight:240px;scroll:no;status:no");
+	    //}
+	</script>
+
+	<style type="text/css"> 
+	/* CSS Document */ 
+	body { 
+
+	} 
+	
+    .dlgclass1 {
+        border: #C9DFF4 solid 10px;
+        padding: 0 15px;
+        background: #FBFCFF;
+    }
+    #dianhuadlg {
+        display: none;
+    }
+	#GVTChapterList { 
+		width: 100%; 
+		padding: 0; 
+		margin: 0; 
+	} 
+	.table-striped tbody th {
+		font-size:12px; 
+		border-top: 1px solid #C1DAD7; 
+		border-right: 1px solid #C1DAD7; 
+		border-bottom: 1px solid #C1DAD7; 
+		background-color:#ffffff; 
+		color: #4f6b72; 
+		padding: 6px 6px 6px 12px; }
+	.table-striped tbody tr:nth-child(even) td {
+		font-size:12px; 
+		border-right: 1px solid #C1DAD7; 
+		border-bottom: 1px solid #C1DAD7; 
+		background-color:#ffffff; 
+		color: #4f6b72; 
+		padding: 6px 6px 6px 12px; }
+	.table-striped tbody tr:nth-child(odd) td {
+		font-size:12px; 
+		border-right: 1px solid #C1DAD7; 
+		border-bottom: 1px solid #C1DAD7; 
+		background: #F5FAFA; 
+		color: #797268; 
+		padding: 6px 6px 6px 12px; }
+	.table-striped tbody td {
+		font-size:12px; 
+		border-right: 1px solid #C1DAD7; 
+		border-bottom: 1px solid #C1DAD7; 
+		background-color:#ffffff; 
+		color: #4f6b72; 
+		padding: 6px 6px 6px 12px; }
+		
+	#container
+	{
+		width:817px;
+	}
+	
+	.ext-4 
+	{
+		width: 500px;
+	}
+	
+	.ext-5,.ext-5-lb,.ext-5-rb,.ext-7,.ext-8
+	{
+		height: 463px;
+	}
+	.ext-5-lb,.ext-5-rb
+	{
+		height: 493px;
+	}
+	/*
+	.ext-5
+	{
+		background: url(images/middlebg.png) repeat-x left top;
+	}
+	.ext-5-lb
+	{
+		background: url(images/leftbg.png) no-repeat left top;
+	}
+	.ext-5-rb
+	{
+		background: url(images/rightbg.png) no-repeat right top;
+	}
+	*/
+	
+	.ext-6
+	{
+		background:#000;
+		width:760px;
+		height:463px;
+	}
+	</style> 
+</head>
+<body  oncontextmenu=self.event.returnvalue=false;>
+    <form name="form1" method="post" action="main.aspx?Annual=2016&amp;CourseID=198" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTc0NjY0Njc3OQ9kFgICAw9kFgpmDw8WAh4EVGV4dAUJ55+z54+K54+KZGQCAQ8PFgIfAAUb5Lya6K6h5Z+656GA55+l6K+G5LiO5a6e5YqhZGQCAg8WAh8ABcVBCTx0YWJsZSBjbGFzcz0idGFibGUtc3RyaXBlZCIgY2VsbHNwYWNpbmc9IjAiIHJ1bGVzPSJhbGwiIGJvcmRlcj0iMSIgaWQ9IkdWVENoYXB0ZXJMaXN0IiBzdHlsZT0iYm9yZGVyLXN0eWxlOk5vbmU7Zm9udC1zaXplOjEycHg7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0aCBzY29wZT0iY29sIj7or77nqIvnm67lvZU8L3RoPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTEyNSIgb25jbGljaz0ibmV4dE5vZGUoJzExMjUnLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTPpgZPor5XpopjmnKrlrozmiJAiPuesrOS4gOeroCDmgLvorro8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExMjYiIG9uY2xpY2s9Im5leHROb2RlKCcxMTI2JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIky6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkuoznq6Ag5Lya6K6h6KaB57Sg5LiO5Lya6K6h562J5byPIO+8iOS4gO+8iTwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTEyNyIgb25jbGljaz0ibmV4dE5vZGUoJzExMjcnLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTHpgZPor5XpopjmnKrlrozmiJAiPuesrOS6jOeroCDkvJrorqHopoHntKDkuI7kvJrorqHnrYnlvI8g77yI5LqM77yJPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTI4IiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTEyOCcsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJMumBk+ivlemimOacquWujOaIkCI+56ys5LiJ56ugIOS8muiuoeenkeebruS4jui0puaItzwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTEyOSIgb25jbGljaz0ibmV4dE5vZGUoJzExMjknLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTHpgZPor5XpopjmnKrlrozmiJAiPuesrOWbm+eroCDkvJrorqHorrDotKbmlrnms5XvvIjkuIDvvIk8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExMzAiIG9uY2xpY2s9Im5leHROb2RlKCcxMTMwJywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIky6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzlm5vnq6Ag5Lya6K6h6K6w6LSm5pa55rOV77yI5LqM77yJPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTMxIiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTEzMScsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJMumBk+ivlemimOacquWujOaIkCI+56ys5LqU56ugIOS4u+imgeS4muWKoeOAgeetuei1hOi0puWKoeWkhOeQhu+8iOS4gO+8iTwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTEzMiIgb25jbGljaz0ibmV4dE5vZGUoJzExMzInLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTLpgZPor5XpopjmnKrlrozmiJAiPuesrOS6lOeroCDkuLvopoHkuJrliqHjgIHnrbnotYTotKbliqHlpITnkIbvvIjkuozvvIk8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNDIiIG9uY2xpY2s9Im5leHROb2RlKCcxMTQyJywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIky6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkupTnq6Ag5Zu65a6a6LWE5Lqn55qE6LSm5Yqh5aSE55CG77yI5LiA77yJPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTQzIiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTE0MycsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJMumBk+ivlemimOacquWujOaIkCI+56ys5LqU56ugIOWbuuWumui1hOS6p+eahOi0puWKoeWkhOeQhu+8iOS6jO+8iTwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTE0NCIgb25jbGljaz0ibmV4dE5vZGUoJzExNDQnLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTTpgZPor5XpopjmnKrlrozmiJAiPuesrOS6lOeroCDmnZDmlpnph4fotK3kuJrliqHnmoTotKbliqHlpITnkIY8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNDUiIG9uY2xpY2s9Im5leHROb2RlKCcxMTQ1JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIky6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkupTnq6Ag55Sf5Lqn5Lia5Yqh55qE6LSm5Yqh5aSE55CGPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTQ3IiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTE0NycsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJM+mBk+ivlemimOacquWujOaIkCI+56ys5LqU56ugIOmUgOWUruS4muWKoeeahOi0puWKoeWkhOeQhjwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTE0OCIgb25jbGljaz0ibmV4dE5vZGUoJzExNDgnLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTHpgZPor5XpopjmnKrlrozmiJAiPuesrOS6lOeroCDmnJ/pl7TotLnnlKjnmoTotKbliqHlpITnkIY8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNDkiIG9uY2xpY2s9Im5leHROb2RlKCcxMTQ5JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIky6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkupTnq6Ag5Yip5ram5b2i5oiQ5LiO5YiG6YWN5Lia5Yqh55qE6LSm5Yqh5aSE55CGPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTUwIiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTE1MCcsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJMemBk+ivlemimOacquWujOaIkCI+56ys5YWt56ugICDkvJrorqHlh63or4HmpoLov7A8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNTEiIG9uY2xpY2s9Im5leHROb2RlKCcxMTUxJywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIkz6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzlha3nq6AgIOWOn+Wni+WHreivgTwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTE1MiIgb25jbGljaz0ibmV4dE5vZGUoJzExNTInLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTTpgZPor5XpopjmnKrlrozmiJAiPuesrOWFreeroCAg6K6w6LSm5Yet6K+B5Y+K5Lya6K6h5Yet6K+B5Lyg6YCS5ZKM5L+d566hPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTUzIiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTE1MycsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJMumBk+ivlemimOacquWujOaIkCI+56ys5LiD56ugICDkvJrorqHotKbnsL/mpoLov7A8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNTQiIG9uY2xpY2s9Im5leHROb2RlKCcxMTU0JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIky6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkuIPnq6Ag6LSm57C/5ZCv55So44CB55m76K6w5pa55rOV5LiO5qC85byPPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTU1IiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTE1NScsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJMumBk+ivlemimOacquWujOaIkCI+56ys5LiD56ugICDlr7notKbkuI7nu5PotKY8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNTYiIG9uY2xpY2s9Im5leHROb2RlKCcxMTU2JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIkx6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkuIPnq6AgIOmUmei0puafpeaJvuS4juabtOato+aWueazlTwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTE1NyIgb25jbGljaz0ibmV4dE5vZGUoJzExNTcnLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTPpgZPor5XpopjmnKrlrozmiJAiPuesrOWFq+eroCAg6LSm5Yqh5aSE55CG56iL5bqPPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTU4IiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTE1OCcsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJMumBk+ivlemimOacquWujOaIkCI+56ys5Lmd56ugICDotKLkuqfmuIXmn6XmpoLov7A8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNTkiIG9uY2xpY2s9Im5leHROb2RlKCcxMTU5JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIky6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkuZ3nq6AgIOi0ouS6p+a4heafpeeahOaWueazlTwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTE2MCIgb25jbGljaz0ibmV4dE5vZGUoJzExNjAnLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTPpgZPor5XpopjmnKrlrozmiJAiPuesrOS5neeroCAg6LSi5Lqn5riF5p+l57uT5p6c55qE5aSE55CGPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTYxIiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTE2MScsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJM+mBk+ivlemimOacquWujOaIkCI+56ys5Y2B56ugICDotKLliqHmiqXooajnmoTmpoLov7A8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNjIiIG9uY2xpY2s9Im5leHROb2RlKCcxMTYyJywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIky6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzljYHnq6AgIOi1hOS6p+i0n+WAuuihqO+8iOS4gO+8iTwvYT48L3RkPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGQgYWxpZ249ImxlZnQiPjxhIGlkPSJHVlRDaGFwdGVyTGlzdF9jdGwwMl9IeXBlckxpbms0MTE2MyIgb25jbGljaz0ibmV4dE5vZGUoJzExNjMnLCcyMDE2JykiIGhyZWY9ImphdmFzY3JpcHQ6dm9pZCgwKSIgdGl0bGU9IuivpeeroOiKguS4i+i/mOaciTHpgZPor5XpopjmnKrlrozmiJAiPuesrOWNgeeroCAg6LWE5Lqn6LSf5YC66KGo77yI5LqM77yJPC9hPjwvdGQ+Cg0gICAgIDwvdHI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0ZCBhbGlnbj0ibGVmdCI+PGEgaWQ9IkdWVENoYXB0ZXJMaXN0X2N0bDAyX0h5cGVyTGluazQxMTY0IiBvbmNsaWNrPSJuZXh0Tm9kZSgnMTE2NCcsJzIwMTYnKSIgaHJlZj0iamF2YXNjcmlwdDp2b2lkKDApIiB0aXRsZT0i6K+l56ug6IqC5LiL6L+Y5pyJMemBk+ivlemimOacquWujOaIkCI+56ys5Y2B56ugICDliKnmtqbooag8L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNjUiIG9uY2xpY2s9Im5leHROb2RlKCcxMTY1JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIkz6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkuIDjgIHkuoznq6Dnn6Xor4bngrnlm57pob48L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNjYiIG9uY2xpY2s9Im5leHROb2RlKCcxMTY2JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIkz6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzkuInjgIHlm5vjgIHkupTnq6Dnn6Xor4bngrnlm57pob48L2E+PC90ZD4KDSAgICAgPC90cj4KDSAgICAgPHRyPgoNICAgICAgICAgPHRkIGFsaWduPSJsZWZ0Ij48YSBpZD0iR1ZUQ2hhcHRlckxpc3RfY3RsMDJfSHlwZXJMaW5rNDExNjciIG9uY2xpY2s9Im5leHROb2RlKCcxMTY3JywnMjAxNicpIiBocmVmPSJqYXZhc2NyaXB0OnZvaWQoMCkiIHRpdGxlPSLor6Xnq6DoioLkuIvov5jmnIkx6YGT6K+V6aKY5pyq5a6M5oiQIj7nrKzlha3jgIHkuIPjgIHlhavjgIHkuZ3jgIHljYHnq6Dnn6Xor4bngrnlm57pob48L2E+PC90ZD4KDSAgICAgPC90cj4KDSA8L3RhYmxlPmQCAw8WAh8ABcwECTx0YWJsZSBjbGFzcz0idGFibGUtc3RyaXBlZCIgY2VsbHNwYWNpbmc9IjAiIHJ1bGVzPSJhbGwiIGJvcmRlcj0iMSIgaWQ9IkdWVENoYXB0ZXJMaXN0IiBzdHlsZT0iYm9yZGVyLXN0eWxlOk5vbmU7Zm9udC1zaXplOjEycHg7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyI+Cg0gICAgIDx0cj4KDSAgICAgICAgIDx0aCBzY29wZT0iY29sIj7mqKHmi5/ogIPor5XorrDlvZU8L3RoPgoNICAgICA8L3RyPgoNICAgICA8dHI+Cg0gICAgICAgICA8dGggc2NvcGU9ImNvbCI+PGRpdiBhbGlnbj0iY2VudGVyIiBzdHlsZT0id2lkdGg6MjUlO2Zsb2F0OmxlZnQ7Ij7or5XljbfnvJblj7c8L2Rpdj48ZGl2IGFsaWduPSJjZW50ZXIiIHN0eWxlPSJ3aWR0aDo2MCU7ZmxvYXQ6bGVmdDsiPua1i+ivleaXtumXtDwvZGl2PjxkaXYgYWxpZ249ImNlbnRlciIgc3R5bGU9IndpZHRoOjE1JTtmbG9hdDpsZWZ0OyI+5b6X5YiGPC9kaXY+PC90aD4KDSAgICAgPC90cj4KDSAgIDx0cj48dGQ+PGRpdiBhbGlnbj0iY2VudGVyIiBzdHlsZT0id2lkdGg6MTAwJTsiPuaaguaXoOaooeaLn+iAg+ivleiusOW9leOAgjwvZGl2PjwvdGQ+PC90cj4gIDwvdGFibGU+ZAIEDxYCHwAFYDxhIHN0eWxlPSJjb2xvcjojMDA1MDlhOyIgaHJlZj0iL3VzZXIvZWR1L0NvbmZpcm1NTi5hc3B4IiB0YXJnZXQ9Il9ibGFuayI+5Y+C5Yqg5qih5ouf6ICD6K+VPC9hPmRkFiQx0/ivX4X5VJLwmJbNnyKMiH8=" />
+</div>
+
+    <div>
+
+	<div class="cell-wapper-height-auto ext-1">
+		<div id="container" class="ext-2 div-block div-center">
+			<div class="relative-wapper div-block">
+				<div class="h-sc"></div>
+				<div class="h-sc-h"></div>
+				<a href="#" class="ext-3 div-block"><img src="images/logo.png" class="pngFix"/></a>
+				<div class="ext-4">姓名：<span id="labName">石珊珊</span>　课程：<span id="lbl_CourseName">会计基础知识与实务</span></div>
+				<div class="line-end"></div>
+				<div class="h-sc-h"></div>
+				<div class="ext-5 div-block">
+					<div class="ext-5-lb div-block pngFix"></div>
+					<div id="bar" class="ext-8 float-right">
+						<div class="h-sc"></div>
+						<a id="kcjy" class="ext-8-btn div-block">
+							<img src="images/hover.png" class="ext-8-bg pngFix"/>
+							<img src="images/btn1.png" class="ext-8-icon pngFix"/>
+						</a>
+						<div class="h-sc"></div>
+						<div class="h-sc"></div>
+						<a id="kcml" class="ext-8-btn div-block">
+							<img src="images/hover.png" class="ext-8-bg pngFix"/>
+							<img src="images/btn2.png" class="ext-8-icon pngFix"/>
+						</a>
+						<div class="h-sc"></div>
+						<div class="h-sc"></div>
+						<a id="sttw" class="ext-8-btn div-block">
+							<img src="images/hover.png" class="ext-8-bg pngFix"/>
+							<img src="images/btn3.png" class="ext-8-icon pngFix"/>
+						</a>
+                        <div class="h-sc"></div>
+						<div class="h-sc"></div>
+						<a id="A2" class="ext-8-btn div-block">
+							<img src="images/hover.png" class="ext-8-bg pngFix"/>
+							<img src="images/btn7.png" class="ext-8-icon pngFix"/>
+						</a>
+						<div class="h-sc"></div>
+						<div class="h-sc"></div>
+						<a id="bzxj" class="ext-8-btn div-block">
+							<img src="images/hover.png" class="ext-8-bg pngFix"/>
+							<img src="images/btn5.png" class="ext-8-icon pngFix"/>
+						</a>
+					</div>
+					
+	<!--************************************************************************************************************-->
+	<!--************************侧边框内容填充区域 开头****************************************-->
+	<!--************************************************************************************************************-->
+					<div id="box1" class="ext-7 float-right">
+						<div  class="ext-7-box-title">第一章 总论</div>
+						<a class="ext-7-box-closebtn div-block pngFix"></a>
+						<div  class="ext-7-box div-block" style="line-height:24px; font-size:12">
+							<p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">第一章　总论</span></strong></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体"></span></strong><span style="FONT-FAMILY: 宋体">本章主要内容：</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">第一节会计的概念与特点</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">第二节会计的职能与方法</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">第三节会计的基本假设与会计基础</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">第四节会计信息使用者与会计信息质量</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">第五节会计准则体系</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体"></span>&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">第一节　会计概念与目标</span></strong></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">一、会计的概念与特征</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（一）会计的概念</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计是以货币为主要计量单位，运用专门的方法，核算和监督一个单位经济活动的一种经济管理工作。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（二）会计的基本特征</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（</span>1<span style="FONT-FAMILY: 宋体">）会计是一种经济管理活动；</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（</span>2<span style="FONT-FAMILY: 宋体">）会计是一个经济信息系统；</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（</span>3<span style="FONT-FAMILY: 宋体">）会计以货币作为主要计量单位；</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（</span>4<span style="FONT-FAMILY: 宋体">）会计具有核算和监督的基本职能；</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（</span>5<span style="FONT-FAMILY: 宋体">）会计采用一系列专门的方法。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（三）会计的发展历程</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计是随着人类社会生产的发展和经济管理的需要而产生、发展并不断得到完善。会计的发展可划分为古代会计、近代会计和现代会计三个阶段。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">1494<span style="FONT-FAMILY: 宋体">年，意大利传教士、数学家卢卡?帕乔里出版了一本著作《算术、几何、比及比例概要》，其中一章“簿记论”，全面系统地介绍了威尼斯的复式记账法，并从理论上给予必要的阐述。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">传统的会计至此可划分为两大类，一类是为外部提供会计信息服务为主的“财务会计”，另一类是为企业内部管理服务为主的“管理会计”。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">二、会计的对象与目标</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（一）会计对象</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计对象是指会计核算和监督的内容，具体是指社会再生产过程中能以货币表现的经济活动，即资金运动或价值运动。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（二）会计目标</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计目标也称会计目的，是要求会计工作完成的任务或达到的标准，即向财务会计报告使用者提供与企业财务状况、经营成果和现金流量等有关的会计信息，反映企业管理层受托责任履行情况，有助于财务会计报告使用者作出经济决策。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体"></span>&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">第二节　会计的职能与方法</span></strong></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">一、会计的基本职能</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（一）核算职能（反映职能）</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计核算职能，又称会计反映职能，是指会计以货币为主要计量单位，对特定主体的经济活动进行确认、计量和报告。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（二）监督职能（控制职能）</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计监督职能，又称会计控制职能，是指对特定主体经济活动和相关会计核算的真实性、合法性和合理性进行监督检查。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（三）会计核算职能和会计监督职能的关系</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计核算是会计监督的基础，没有会计核算所提供的各种信息，会计监督就失去了依据；而会计监督又是会计核算质量的保障，只有会计核算，没有会计监督，就难以保证会计核算所提供信息的真实性和可靠性。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">二、会计核算方法</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计核算方法是指对会计对象进行连续、系统、全面、综合的确认、计量和报告所采用的各种方法。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（一）会计核算方法体系</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">1.<span style="FONT-FAMILY: 宋体">填制和审核会计凭证</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">2.<span style="FONT-FAMILY: 宋体">设置会计科目和账户</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">3.<span style="FONT-FAMILY: 宋体">复式记账</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">4.<span style="FONT-FAMILY: 宋体">登记会计账簿</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">5.<span style="FONT-FAMILY: 宋体">成本计算</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">6.<span style="FONT-FAMILY: 宋体">财产清查</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">7.<span style="FONT-FAMILY: 宋体">编制财务报告</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">二、会计核算方法</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（二）会计循环</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计循环是指按照一定的步骤反复运行的会计程序。从会计工作流程看，会计循环由确认、计量和报告等环节组成</span>;<span style="FONT-FAMILY: 宋体">从会计核算的具体内容看，会计循环由填制和审核会计凭证、设置会计科目和账户、复式记账、登记会计账簿、成本计算、财产清查、编制财务会计报告等组成。填制和审核会计凭证是会计核算的起点。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">第三节会计基本假设与会计基础</span></strong></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">一、会计基本假设</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计基本假设是企业会计确认、计量和报告的前提，是对会计核算所处时间、空间环境等所作的合理假定。会计基本假设包括会计主体、持续经营、会计分期和货币计量。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">一</span>)<span style="FONT-FAMILY: 宋体">会计主体</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计主体是指企业会计确认、计量和报告的空间范围，即会计核算和监督的特定单位或组织。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计主体与法律主体（法人）并非是对等的概念，法人可作为会计主体，但会计主体不一定是法人。在同一个法律主体中，也可能存在多个会计主体。（会计主体不一定是法律主体，法律主体一定是会计主体）</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">二</span>)<span style="FONT-FAMILY: 宋体">持续经营</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">持续经营是指在可以预见的未来，企业将会按当前的规模和状态继续经营下去，不会停业，也不会大规模削减业务。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">持续经营只是一个假定，一个企业在不能持续经营时应当停止使用根据该假设所选择的会计确认、计量和报告原则与方法，一旦进入清算，就应当改按清算会计处理。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">三</span>)<span style="FONT-FAMILY: 宋体">会计分期</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计分期是指将一个企业持续经营的经济活动划分为一个个连续的、长短相同的期间，以便分期结算账目和编制财务会计报告。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计期间分为年度、半年度、季度和月度。在我国，年度、半年度、季度和月度均按公历起讫日期确定。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">【例题】根据我国《企业会计准则》的规定，会计期间分为（　）。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">A<span style="FONT-FAMILY: 宋体">、月度</span>B<span style="FONT-FAMILY: 宋体">、季度</span>C<span style="FONT-FAMILY: 宋体">、半年度</span>D<span style="FONT-FAMILY: 宋体">、年度</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">正确答案：</span>ABCD</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">四</span>)<span style="FONT-FAMILY: 宋体">货币计量</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">　货币计量是指会计主体在会计确认、计量和报告时以货币作为计量尺度，反映会计主体的经济活动。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">我国的会计核算应以人民币为记账本位币。业务收支以外币为主的企业，也可以选择某种外币作为记账本位币，但编制的财务会计报告应当折算为人民币反映；</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">补充内容：货币计量假设隐含币值稳定假设。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">二、会计基础</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计基础是指会计确认、计量和报告的基础，包括权责发生制和收付实现制。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">一</span>)<span style="FONT-FAMILY: 宋体">权责发生制</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">权责发生制，也称应计制或应收应付制，是指收入、费用的确认应当以收入和费用的实际发生作为确认的标准，合理确认当期损益的一种会计基础。在我国，企业会计核算采用权责发生制。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">二</span>)<span style="FONT-FAMILY: 宋体">收付实现制</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">收付实现制，也称现金制，是以收到或支付现金作为确认收入和费用的标准，是与权责发生制相对应的一种会计基础。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">二、会计基础</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">权责发生制与收付实现制比较：</span></p><table width="353" style="BORDER-TOP: black 1pt solid; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; BORDER-LEFT: black 1pt solid; WIDTH: 264.9pt" border="1" cellspacing="0" cellpadding="0" uetable="null"><tbody><tr class="firstRow" style="HEIGHT: 15.3pt"><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 15.3pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">项目</span></strong></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 15.3pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">权责发生制</span></strong></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 15.3pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">收付实现制</span></strong></p></td></tr><tr style="HEIGHT: 25.2pt"><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 25.2pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">本月销售一批货物，价款</span>100<span style="FONT-FAMILY: 宋体">万元，款未收</span></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 25.2pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">确认收入</span>100<span style="FONT-FAMILY: 宋体">万</span></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 25.2pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">不确认收入</span></p></td></tr><tr style="HEIGHT: 27.5pt"><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 27.5pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">本月收到上月销售货物的货款</span>150<span style="FONT-FAMILY: 宋体">万</span></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 27.5pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">不确认收入</span></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 27.5pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">确认收入</span>150<span style="FONT-FAMILY: 宋体">万</span></p></td></tr><tr style="HEIGHT: 35.2pt"><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 35.2pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">本月销售货物</span>300<span style="FONT-FAMILY: 宋体">万元，实际收到货款</span>180<span style="FONT-FAMILY: 宋体">元，余款下月支付</span></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 35.2pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">确认收入</span>300<span style="FONT-FAMILY: 宋体">万元</span></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 35.2pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">确认收入</span>180<span style="FONT-FAMILY: 宋体">万元</span></p></td></tr><tr style="HEIGHT: 26.75pt"><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 26.75pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">预收销货款</span>350<span style="FONT-FAMILY: 宋体">万，货物未发出</span></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 26.75pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">不确认收入</span></p></td><td width="118" valign="top" style="BORDER-TOP: black 1pt solid; HEIGHT: 26.75pt; BORDER-RIGHT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 0cm; BORDER-LEFT: black 1pt solid; PADDING-RIGHT: 0cm; WIDTH: 88.3pt"><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">确认收入</span>350<span style="FONT-FAMILY: 宋体">万元</span></p></td></tr></tbody></table><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">企业应当以权责发生制为会计核算的基础</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">行政、事业单位会计核算一般采用收付实现制；事业单位部分经济业务或者事项，以及部分行业事业单位的会计核算采用权责发生制核算的，由财政部在相关会计制度中具体规定。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">【例题】本月收到上月销售产品的货款存入银行，下列表述中，正确的有（　）。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">A<span style="FONT-FAMILY: 宋体">、收付实现制下，应当作为本月收入</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">B<span style="FONT-FAMILY: 宋体">、权责发生制下，不能作为本月收入</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">C<span style="FONT-FAMILY: 宋体">、收付实现制下，不能作为本月收入</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">D<span style="FONT-FAMILY: 宋体">、权责发生制下，应当作为本月收入</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">正确答案：</span>AB</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">第四节　会计信息的使用者及其质量要求</span></strong></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">　一、会计信息的使用者</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计信息的使用者主要包括投资者、债权人、企业管理者、政府及其相关部门和社会公众等。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">【例题单项选择题】（　）是企业内部主要的会计信息使用者。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">A<span style="FONT-FAMILY: 宋体">、企业管理者</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">B<span style="FONT-FAMILY: 宋体">、企业职工</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">C<span style="FONT-FAMILY: 宋体">、债权人</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">D<span style="FONT-FAMILY: 宋体">、政府部门</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">正确答案：</span>A</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">二、会计信息的质量要求</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计信息质量要求是对企业财务会计报告中所提供高质量会计信息的基本规范，是使财务会计报告中所提供会计信息对投资者等使用者决策有用应具备的基本特征，主要包括可靠性、相关性、可理解性、可比性、实质重于形式、重要性、谨慎性和及时性等。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">一</span>)<span style="FONT-FAMILY: 宋体">可靠性</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">可靠性要求企业应当以实际发生的交易或者事项为依据进行确认、计量和报告，如实反映符合确认和计量要求的各项会计要素及其他相关信息，保证会计信息真实可靠、内容完整。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（二）相关性（有用性）</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">相关性要求企业提供的会计信息应当与财务报告使用者的经济决策需要相关，有助于财务报告使用者对企业过去、现在的情况作出评价，对未来的情况作出预测。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（三）可理解性</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">可理解性要求企业提供的会计信息应当清晰明了、简明扼要，便于财务会计报告使用者理解和使用。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">四</span>)<span style="FONT-FAMILY: 宋体">可比性</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">　</span>1.<span style="FONT-FAMILY: 宋体">纵向可比：要求同一企业不同时期发生的相同或者相似的交易或者事项，应当采用一致的会计政策，不得随意变更。（不是不得变更）。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">【例题?判断题】可比性要求企业采用的会计处理方法和程序前后各期应当一致，不得变更。（　）</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">正确答案：错误。不得随意变更。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">2.<span style="FONT-FAMILY: 宋体">横向可比：要求不同企业相同会计期间发生的相同或者相似的交易或者事项，应当采用规定的会计政策，确保会计信息口径一致、相互可比。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（五）实质重于形式</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">实质重于形式要求企业应当按照交易或者事项的经济实质进行会计确认、计量和报告，不应仅以交易或者事项的法律形式为依据。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">考试常用举例：融资租入固定资产</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">（六）重要性</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">重要性要求企业提供的会计信息应当反映与企业财务状况、经营成果和现金流量有关的所有重要交易或者事项。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">　</span>(<span style="FONT-FAMILY: 宋体">七</span>)<span style="FONT-FAMILY: 宋体">谨慎性</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">谨慎性要求企业对交易或者事项进行会计确认、计量和报告时保持应有的谨慎，不应高估资产或者收益、低估负债或者费用。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">考试常用的举例：资产计提减值准备</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">七</span>)<span style="FONT-FAMILY: 宋体">谨慎性</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">但是，谨慎性的应用并不允许企业设置秘密准备，如果企业故意低估资产或者收益，或者故意高估负债或者费用，将不符合会计信息的可靠性和相关性要求。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">【例题】下列关于谨慎性原则运用正确的是（　）。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">A<span style="FONT-FAMILY: 宋体">、计提秘密准备金</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">B<span style="FONT-FAMILY: 宋体">、高估资产或收益</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">C<span style="FONT-FAMILY: 宋体">、对可能发生的各项资产损失，按规定计提资产减值准备</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">D<span style="FONT-FAMILY: 宋体">、少计负债或费用</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">正确答案：</span>C</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">(<span style="FONT-FAMILY: 宋体">八</span>)<span style="FONT-FAMILY: 宋体">及时性</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">及时性要求企业对于已经发生的交易或者事项，应当及时进行确认、计量和报告，不得提前或者延后。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">【例题】下列各项中，不属于反映会计信息质量要求的是（　）。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">A<span style="FONT-FAMILY: 宋体">、会计核算方法一经确定不得随意变更</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">B<span style="FONT-FAMILY: 宋体">、会计核算应当注重交易和事项的实质</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">C<span style="FONT-FAMILY: 宋体">、会计核算应当以权责发生制为基础</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">D<span style="FONT-FAMILY: 宋体">、会计核算应当以实际发生的交易或事项为依据</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">正确答案：</span>C</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">第五节会计准则体系</span></strong></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">一、会计准则的构成</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体">会计准则是反映经济活动、确认产权关系、规范收益分配的会计技术标准，是生成和提供会计信息的重要依据，也是政府调控经济活动、规范经济秩序和开展国际经济交往等的重要手段。会计准则具有严密和完整的体系。我国已颁布的会计准则有《企业会计准则》、《小企业会计准则》和《事业单位会计准则》。</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt"><span style="FONT-FAMILY: 宋体"></span>&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: center; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21.1pt"><strong><span style="FONT-FAMILY: 宋体">本章小结</span></strong></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">1.<span style="FONT-FAMILY: 宋体">了解会计的概念</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">2.<span style="FONT-FAMILY: 宋体">了解会计对象</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">3.<span style="FONT-FAMILY: 宋体">了解会计目标</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">4.<span style="FONT-FAMILY: 宋体">了解会计准则体系</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">5.<span style="FONT-FAMILY: 宋体">了解会计的核算方法</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">6.<span style="FONT-FAMILY: 宋体">了解收付实现制</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">7.<span style="FONT-FAMILY: 宋体">熟悉会计的基本特征</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">8.<span style="FONT-FAMILY: 宋体">熟悉会计的基本职能</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">9.<span style="FONT-FAMILY: 宋体">掌握会计基本假设</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">10.<span style="FONT-FAMILY: 宋体">掌握权责发生制</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">11.<span style="FONT-FAMILY: 宋体">掌握会计信息质量要求</span></p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph; TEXT-INDENT: 21pt">&nbsp;</p><p style="FONT-SIZE: 9pt; FONT-FAMILY: &#39;Times New Roman&#39;, &#39;serif&#39;; TEXT-ALIGN: justify; MARGIN: 0cm 0cm 0pt; TEXT-JUSTIFY: inter-ideograph">&nbsp;</p><p>&nbsp;</p><p></p></p>
+						</div>
+					</div>
+					<div id="box2" class="ext-7 float-right">
+						<div  class="ext-7-box-title">第一章 总论</div>
+						<a class="ext-7-box-closebtn div-block pngFix"></a>
+						<div class="ext-7-box div-block">
+							<!--课程目录显示区域-->
+								<table class="table-striped" cellspacing="0" rules="all" border="1" id="GVTChapterList" style="border-style:None;font-size:12px;border-collapse:collapse;">
+
+     <tr>
+
+         <th scope="col">课程目录</th>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41125" onclick="nextNode('1125','2016')" href="javascript:void(0)" title="该章节下还有3道试题未完成">第一章 总论</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41126" onclick="nextNode('1126','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第二章 会计要素与会计等式 （一）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41127" onclick="nextNode('1127','2016')" href="javascript:void(0)" title="该章节下还有1道试题未完成">第二章 会计要素与会计等式 （二）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41128" onclick="nextNode('1128','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第三章 会计科目与账户</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41129" onclick="nextNode('1129','2016')" href="javascript:void(0)" title="该章节下还有1道试题未完成">第四章 会计记账方法（一）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41130" onclick="nextNode('1130','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第四章 会计记账方法（二）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41131" onclick="nextNode('1131','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第五章 主要业务、筹资账务处理（一）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41132" onclick="nextNode('1132','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第五章 主要业务、筹资账务处理（二）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41142" onclick="nextNode('1142','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第五章 固定资产的账务处理（一）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41143" onclick="nextNode('1143','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第五章 固定资产的账务处理（二）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41144" onclick="nextNode('1144','2016')" href="javascript:void(0)" title="该章节下还有4道试题未完成">第五章 材料采购业务的账务处理</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41145" onclick="nextNode('1145','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第五章 生产业务的账务处理</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41147" onclick="nextNode('1147','2016')" href="javascript:void(0)" title="该章节下还有3道试题未完成">第五章 销售业务的账务处理</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41148" onclick="nextNode('1148','2016')" href="javascript:void(0)" title="该章节下还有1道试题未完成">第五章 期间费用的账务处理</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41149" onclick="nextNode('1149','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第五章 利润形成与分配业务的账务处理</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41150" onclick="nextNode('1150','2016')" href="javascript:void(0)" title="该章节下还有1道试题未完成">第六章  会计凭证概述</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41151" onclick="nextNode('1151','2016')" href="javascript:void(0)" title="该章节下还有3道试题未完成">第六章  原始凭证</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41152" onclick="nextNode('1152','2016')" href="javascript:void(0)" title="该章节下还有4道试题未完成">第六章  记账凭证及会计凭证传递和保管</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41153" onclick="nextNode('1153','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第七章  会计账簿概述</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41154" onclick="nextNode('1154','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第七章 账簿启用、登记方法与格式</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41155" onclick="nextNode('1155','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第七章  对账与结账</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41156" onclick="nextNode('1156','2016')" href="javascript:void(0)" title="该章节下还有1道试题未完成">第七章  错账查找与更正方法</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41157" onclick="nextNode('1157','2016')" href="javascript:void(0)" title="该章节下还有3道试题未完成">第八章  账务处理程序</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41158" onclick="nextNode('1158','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第九章  财产清查概述</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41159" onclick="nextNode('1159','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第九章  财产清查的方法</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41160" onclick="nextNode('1160','2016')" href="javascript:void(0)" title="该章节下还有3道试题未完成">第九章  财产清查结果的处理</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41161" onclick="nextNode('1161','2016')" href="javascript:void(0)" title="该章节下还有3道试题未完成">第十章  财务报表的概述</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41162" onclick="nextNode('1162','2016')" href="javascript:void(0)" title="该章节下还有2道试题未完成">第十章  资产负债表（一）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41163" onclick="nextNode('1163','2016')" href="javascript:void(0)" title="该章节下还有1道试题未完成">第十章  资产负债表（二）</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41164" onclick="nextNode('1164','2016')" href="javascript:void(0)" title="该章节下还有1道试题未完成">第十章  利润表</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41165" onclick="nextNode('1165','2016')" href="javascript:void(0)" title="该章节下还有3道试题未完成">第一、二章知识点回顾</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41166" onclick="nextNode('1166','2016')" href="javascript:void(0)" title="该章节下还有3道试题未完成">第三、四、五章知识点回顾</a></td>
+
+     </tr>
+
+     <tr>
+
+         <td align="left"><a id="GVTChapterList_ctl02_HyperLink41167" onclick="nextNode('1167','2016')" href="javascript:void(0)" title="该章节下还有1道试题未完成">第六、七、八、九、十章知识点回顾</a></td>
+
+     </tr>
+
+ </table>
+						</div>
+					</div>
+					<div id="box3" class="ext-7 float-right">
+						<div  class="ext-7-box-title">第一章 总论</div>
+						<a class="ext-7-box-closebtn div-block pngFix"></a>
+						<div  class="ext-7-box div-block">
+							<!--在线答疑显示区域-->
+                            <div>
+                               	<table class="table-striped" cellspacing="0" rules="all" border="1" id="GVTChapterList" style="border-style:None;font-size:12px;border-collapse:collapse;">
+
+     <tr>
+
+         <th scope="col">模拟考试记录</th>
+
+     </tr>
+
+     <tr>
+
+         <th scope="col"><div align="center" style="width:25%;float:left;">试卷编号</div><div align="center" style="width:60%;float:left;">测试时间</div><div align="center" style="width:15%;float:left;">得分</div></th>
+
+     </tr>
+
+   <tr><td><div align="center" style="width:100%;">暂无模拟考试记录。</div></td></tr>  </table>
+                            </div>
+                            <div style = "font-size:10px;margin-top:10px;" align="right";>
+                               <a style="color:#00509a;" href="/user/edu/ConfirmMN.aspx" target="_blank">参加模拟考试</a>
+                            </div>
+						</div>
+					</div>
+
+
+                    <div id="box4" class="ext-7 float-right">
+						<div  class="ext-7-box-title">第一章 总论</div>
+						<a class="ext-7-box-closebtn div-block pngFix"></a>
+						<div  class="ext-7-box div-block">
+							<!--在线答疑显示区域-->
+                            <div style="margin-top:10px">
+                               <textarea id="question" style="height:120px;width:270px"></textarea>
+                               <span style="float:right;"><input type="button"  value="提交" onclick="saveQuestion();"></input></span>
+                            </div>
+                            <div id="questionPanel">
+                            </div>
+                           
+						</div>
+					</div>
+
+					<div id="box5" class="ext-7 float-right">
+						<div  class="ext-7-box-title">第一章 总论</div>
+						<a class="ext-7-box-closebtn div-block pngFix"></a>
+						<div  class="ext-7-box div-block">
+							<!--注意事项显示区域-->
+							<div style="width: 253px;height: 440px;padding:10px;line-height:26px;font-size:12px;font-weight:bold;color:#4F6B72;text-align:left;overflow-x:hidden;overflow-y:auto;">
+								<span style="font-size:14px;color:#cc0000;">注意事项:</span><br>
+									根据财政部《会计人员继续教育暂行规定》和山东省财政厅《山东省会计人员继续教育管理暂行办法》，国家机关、社会团体、企业、事业单位和其他组织，中央驻鲁单位会计人员，每年要完成不少于24学分的继续教育学习。<br>
+									  1、山东省会计人员继续教育主要采取网络学习方式，请直接注册、登录山东会计人员继续教育网参加学习。<br>
+									  2、学习过程中随机弹出试题，每个试题单独计时，累加满24学分即为完成本年度继续教育规定学分。<br>
+									  3、会计人员每年学习记录和学分将自动保存到省级财政部门会计人员管理平台“个人诚信积累空间”。<br>
+									  4、有会计证但未从事会计工作的也需要按规定参加继续教育学习，并完成规定课时和学分。<br>
+									  5、为保证计时正确，请使用IE8及以上版本浏览器。<br>
+									  6、如果您在网络学习中遇到任何问题，请随时拨打24小时服务热线：400-615-0689。<br>
+							</div>
+						</div>
+					</div>
+	<!--************************************************************************************************************-->
+	<!--************************侧边框内容填充区域 结尾****************************************-->
+	<!--************************************************************************************************************-->				
+					
+					<div class="ext-sc div-block"></div>
+					<div class="ext-6 float-right div-block">
+						<div id="video"><div id="a1"></div></div>
+					</div>
+					<div class="ext-5-rb div-block pngFix"></div>
+				</div>
+				<div class="line-end"></div>
+				<div class="h-sc"></div>
+				<div class="ext-9" style="width:680px;">
+					<a title="打开摄像头" class="ext-9-txt" onclick="showphoto()">摄像头</a>
+					<span class="ext-9-txt">|</span>
+					<!--
+                    <a title="在线答疑" class="ext-9-txt">答疑板</a>
+					<span class="ext-9-txt">|</span>
+                    -->
+					<a id="jisuanqion" href="javascript:return false;" title="计算器" class="ext-9-txt">计算器</a>
+					<span class="ext-9-txt">&nbsp;课件形式：</span>
+					<a title="两分屏" class="ext-9-txt">
+						<img title="两分屏" src="images/liang.gif" class="pngFix"/>
+					</a>
+					<a href="../sanplayer/transMain.aspx?Annual=2016&CourseID=198&id=1125" title="三分屏" class="ext-9-txt"><img title="三分屏" src="images/san.gif" class="pngFix"/></a>
+					<span id="DJS" class="ext-10-txt" style="color:#0000cc;">&nbsp;【弹题倒计时器】</span>
+					<span id="LJXS" class="ext-10-txt" style="color:#A40001;">&nbsp;【累计学时】</span>
+                     <a class="ext-9-txt" href="javascript:isPingJia('198','370882198709195529');">课程评价</a>
+                     <a class="ext-9-txt" href="http://www.chinarx.com.cn/UploadFiles/pastyears/会计基础知识与实务.doc">课件下载</a>
+                     <div id="nowTime"></div>
+				</div>
+				<div class="ext-10" align="right" style="width:100px;">
+					<a title="http://www.chinarx.com.cn" class="ext-10-txt">睿信远程教育</a>
+				</div>
+				
+
+			</div>
+		</div>
+	</div>
+
+
+	<link href="http://edu.chinarx.com.cn/images/jisuanqi/jisuanqi.css" rel="stylesheet" type="text/css">
+	<script language="javascript" type="text/javascript" src="http://edu.chinarx.com.cn/Scripts/jisuanqi.js"></script>
+	<div id="hehejisuanqi" class="calBox hidden">	
+		<div class="calu">
+			<input class="hehe float-left" type="text" id="text">    	
+			<ul class="one clearfix">
+				
+				<li class="black zheng">+/-</li>
+				<li class="black rec">1/x</li>
+				<li class="black oper" data="%">%</li>
+				<li class="black sq" data="√">√</li> 
+				
+				
+				<li class="num">7</li>
+				<li class="num">8</li>
+				<li class="num">9</li>
+				<li class="gray oper" data="/">÷</li>
+				<li class="num">4</li>
+				<li class="num">5</li>
+				<li class="num">6</li>
+				<li class="gray oper" data="*">×</li>
+				<li class="num">1</li>
+				<li class="num">2</li>
+				<li class="num">3</li>
+				<li class="gray oper" data="-">-</li>
+				<li class="zero num">0</li>
+				<li class="num">.</li>
+				<li class="gray oper" data="+">+</li>
+				
+				<li class="orange off">关闭</li>
+				<li class="orange clea">清屏</li>
+				<li class="zero black deng fl">=</li>
+				               
+			</ul>
+		</div>
+	</div>
+	<input class="hehe float-left" type="text" id="per" style="display:none">
+	<input class="hehe float-left" type="text" id="text1" style="display:none">
+
+
+
+    <div id="dianhuadlg">
+            
+                <div class="pingfenbox" style=" margin:0 auto; overflow:hidden;  margin-top:10px;">
+                      <div class="pingfenmain" style=" width:500px; margin:0 auto; overflow:hidden; margin-top:20px;">
+    	                    <div class="pingfen_left" style=" float:left; font-size:14px; font-family:'宋体'; margin-top:20px;">
+        	                    评价内容：
+                            </div>
+                            <div class="pingfen_right" style=" float:left;">
+        	                     <textarea name="introduce"  class="textarea" id="content" ></textarea>
+                            </div>
+                        </div>
+  	                    <div class="pingfen_xing" style="  margin:0 auto; overflow:hidden; margin-top:20px;">
+                       <div class="pingfen_kc" style=" float:left; font-size:14px;font-family:'宋体';">
+   	                    课程评分：
+                       </div>
+                        <div id="star2" class="xingxing" ></div>
+                        <div id="result2"></div>
+                        <input type=hidden id="cs" value="0"/>
+                      </div>
+  
+                       <div class="pingfen_xing" style="  margin:0 auto; overflow:hidden; margin-top:20px;">
+                       <div class="pingfen_kc" style=" float:left;font-size:14px;font-family:'宋体';">
+   	                    讲师评分：
+                       </div>
+                        <div id="star3" class="xingxing" ></div>
+                       <div id="result3"></div>
+                       <input type=hidden id="ts" value="0"/>
+                      </div>
+  
+                      <div class="buttonbox" style=" width:200px; margin:0 auto; overflow:hidden">
+                      <div class="button" style=" width:80px; float:left;background:#e4f0fc; color:#fff; text-align:center; border-radius:30px;font-size:20px; height:30px; line-height:30px; margin-bottom:20px; margin-top:10px;">
+    	                    <a href="javascript:saveData();">提&nbsp;交</a>
+                        </div>
+                       <div class="button_2" style=" width:80px; float:right;background:#e4f0fc; color:#fff; text-align:center; border-radius:30px;font-size:20px; height:30px; line-height:30px; margin-bottom:20px; margin-top:10px;">
+    	                    <a href="javascript:closedlg('dianhuadlg');">关&nbsp;闭</a>
+                        </div>
+                      </div>
+                      <input type="hidden" value="198" id="cID"/>
+                      <input type="hidden" value="370882198709195529" id="username"/>
+                </div>
+
+            </div>
+
+
+
+     <script type="text/javascript">
+            rat('star2', 'result2', 1);
+            rat('star3', 'result3', 1);
+            function rat(star, result, m) {
+
+                star = '#' + star;
+                result = '#' + result;
+                $(result).hide(); //将结果DIV隐藏
+
+                $(star).raty({
+                    hints: ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+                    path: "css/img",
+                    starOff: 'star-off-big.png',
+                    starOn: 'star-on-big.png',
+                    size:24,
+                    start: 40,
+                    showHalf: true,
+                    target: result,
+                    targetKeep: true, //targetKeep 属性设置为true，用户的选择值才会被保持在目标DIV中，否则只是鼠标悬停时有值，而鼠标离开后这个值就会消失
+                    click: function (score, evt) {
+                        if (star == "#star2") {
+                            $("#cs").val(score);
+                        } else if (star == "#star3") {
+                            $("#ts").val(score);
+                         }
+                        //第一种方式：直接取值
+                    }
+                });
+
+                /*第二种方式可以设置一个隐蔽的HTML元素来保存用户的选择值，然后可以在脚本里面通过jQuery选中这个元素来处理该值。 弹出结果
+                var text = $(result).text();
+                $('img').click(function () {
+                if ($(result).text() != text) {
+                alert('你的评分是'+$(result).text()/m+'分');
+                alert(result);
+                return;
+                }
+                });*/
+            }
+
+
+
+    </script> 
+	
+
+
+	<script type="text/javascript">
+	    function nextNode(nodeId, annual) {
+//	        alert(document.URL);
+//	        var urlStr = document.URL.split('?')[1].split('&');
+//	        var keyStr = urlStr[0] + "&" + urlStr[1];
+	        window.location.href = "main.aspx?id=" + nodeId + "&Annual=" + annual;
+        }
+
+        
+	    function MillisecondToDate(msd) {
+	        var time = parseFloat(msd) / 1000;
+	        if (null != time && "" != time) {
+	            if (time > 60 && time < 60 * 60) {
+	                time = parseInt(time / 60.0) + "分" + parseInt((parseFloat(time / 60.0) -
+            parseInt(time / 60.0)) * 60) + "秒";
+	            } else if (time >= 60 * 60 && time < 60 * 60 * 24) {
+	                time = parseInt(time / 3600.0) + "小时" + parseInt((parseFloat(time / 3600.0) -
+            parseInt(time / 3600.0)) * 60) + "分" +
+            parseInt((parseFloat((parseFloat(time / 3600.0) - parseInt(time / 3600.0)) * 60) -
+            parseInt((parseFloat(time / 3600.0) - parseInt(time / 3600.0)) * 60)) * 60) + "秒";
+	            } else {
+	                time = parseInt(time) + "秒";
+	            }
+	        } else {
+	            time = "0秒";
+	        }
+	        return time;
+
+	    }  
+
+	    function loadedHandler() {
+
+	        if (CKobject.getObjectById('ckplayer_a1').getType()) {
+	            addPlayListener();
+	        }
+	        else {
+	            addPlayListener();
+	        }
+	    }
+	    function timeHandler(t) {
+	        if (t > -1) {
+	            curTime = parseInt(t) * 1000;
+	        }
+	    }
+	    function addPlayListener() {//增加播放监听
+	        if (CKobject.getObjectById('ckplayer_a1').getType()) {//说明使用html5播放器
+	            CKobject.getObjectById('ckplayer_a1').addListener('play', playHandler);
+	        }
+	        else {
+	            CKobject.getObjectById('ckplayer_a1').addListener('play', 'playHandler');
+	        }
+	    }
+	    function playHandler() {
+	        //alert('因为注册了监听播放，所以弹出此内容，删除监听将不再弹出');
+	        removePlayListener();
+	        CKobject.getObjectById('ckplayer_a1').videoSeek(curTime/1000);
+	        addTimeListener();
+	    }
+	    function removePlayListener() {//删除播放监听事件
+	        if (CKobject.getObjectById('ckplayer_a1').getType()) {//说明使用html5播放器
+	            CKobject.getObjectById('ckplayer_a1').removeListener('play', playHandler);
+	        }
+	        else {
+	            CKobject.getObjectById('ckplayer_a1').removeListener('play', 'playHandler');
+	        }
+	    }
+	    function addTimeListener() {//增加时间监听
+	        if (CKobject.getObjectById('ckplayer_a1').getType()) {//说明使用html5播放器
+	            CKobject.getObjectById('ckplayer_a1').addListener('time', timeHandler);
+	        }
+	        else {
+	            CKobject.getObjectById('ckplayer_a1').addListener('time', 'timeHandler');
+	        }
+	    }
+
+	    var flashvars = {
+	        f: 'http://vidio.chinarx.com.cn/jxjy/2015/wap/kjjc/kjjc0101.mp4',
+	        k: tsd.join("|"), //提示点时间，如 30|60鼠标经过进度栏30秒，60秒会提示n指定的相应的文字
+	        n: tsdtxt.join("|"), //提示点文字，跟k配合使用，如 提示点1|提示点2
+	        c: 0,
+	        p: 1,
+	        e: 2,
+	        l: '',
+	        d: '',
+	        u: '',
+	        loaded: 'loadedHandler',
+	        my_url: encodeURIComponent(window.location.href)
+	    };
+	    var video = ['http://vidio.chinarx.com.cn/jxjy/2015/wap/kjjc/kjjc0101.mp4->video/mp4', 'http://vidio.chinarx.com.cn/jxjy/2015/wap/kjjc/kjjc0101.mp4->video/webm', 'http://vidio.chinarx.com.cn/jxjy/2015/wap/kjjc/kjjc0101.mp4->video/ogg'];
+	    CKobject.embed('/ckplayer6.5/ckplayer.swf', 'a1', 'ckplayer_a1', '760', '463', false, flashvars, video);
+
+	    var rs = "";
+
+	    function ckplayer_status(str) {
+
+	        switch (str) {
+	            case 'play':
+	                {
+	                    played();
+	                }
+	                break;
+	            case 'pause':
+	                {
+	                    paused();
+	                }
+	                break;
+	            case 'netStatus:NetStream.Play.Stop':
+	                {
+	                    ended();
+	                }
+	                break;
+	            default:
+	                break;
+	        }
+	    }
+
+	    //************************************//
+	    //***************事件监听*********************//
+	    //************************************//
+	    //$.Dialog.success("该系列课程开始播放");
+	    function getParameter(query, param) {
+	        var iLen = param.length;
+	        var iStart = query.indexOf(param);
+	        if (iStart == -1)
+	            return "";
+	        iStart += iLen + 1;
+	        var iEnd = query.indexOf("&", iStart);
+	        if (iEnd == -1)
+	            return query.substring(iStart);
+	        return query.substring(iStart, iEnd);
+	    }
+
+	    function ended() {
+
+	        var num = $("#box2 .ext-7-box a").size();
+
+	        var palyerindex = 0; //
+	        //if($("#box2 .ext-7-box a font"))
+	        //{
+	        //palyerindex=$("#box2 .ext-7-box a").index($("#box2 .ext-7-box a font").parent());
+	        //}
+	        for (var wwindex = 0; wwindex < num; wwindex++) {
+	            var myhref = $("#box2 .ext-7-box a").eq(wwindex).attr("href");
+	            var parid = getParameter(myhref, "id");
+	            //alert(parid);
+	            if (parid === '1125') {
+	                palyerindex = wwindex;
+	                break;
+	            }
+	        }
+
+	        var nextindex = palyerindex + 1;
+
+	        if (nextindex < num) {
+	            var nexthref = $("#box2 .ext-7-box a").eq(nextindex).attr("href");
+	            window.location.href = nexthref;
+	        }
+	        else {
+	            //alert("该系列课程全部结束");
+	        }
+
+	    }
+	    function played() {
+	        startDJSTimer();
+	    }
+	    function paused() {
+	        stopDJSTimer();
+	    }
+
+	    //************************************//
+	    //***************事件监听结束*********************//
+	    //************************************//
+		
+		
+	</script>
+    </div>
+
+	<div id="UpdatePanel1">
+        <span id="Timer1" style="visibility:hidden;display:none;"></span>
+        <div id="dialog-message" style="display: none;">
+            <div id="PanelContent" style="width:90%;text-align:left;">
+			</div>
+            <div id="SaveDiv"></div>
+        </div> 
+	</div>
+	<div id="UpdatePanel2">
+        <div id="dialog-message-photo" style="display: none;">
+        	<iframe src="/savephoto/PhotoOnline.html" frameborder="no" width="255px" height="245px"></iframe>
+        </div>
+    </div>
+	<div id="UpdatePanel3">
+        <div id="dialog-notice" style="display: none;">
+        	
+        </div>
+    </div>
+	<div id="dialog-message-js" style="display: none;width:450px;">
+        <div id="PanelContent-js" style="width:90%;text-align:center;padding:20px 0px;"></div>
+    </div> 
+	
+    </form>
+</body>
+</html>
